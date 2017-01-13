@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/ic_launcher.png",
+        "source": "/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/res/drawable-xxxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/home/josevieira/Documents/learning-libgdx/android/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/ic_launcher.png",
         "source": "/home/josevieira/Documents/learning-libgdx/android/res/drawable-xxxhdpi/ic_launcher.png"
     }
