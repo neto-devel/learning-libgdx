@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -24,6 +25,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.DemoGame;
 import com.mygdx.game.scenes.Hud;
+import com.mygdx.game.sprites.Mario;
 
 /**
 
@@ -43,6 +45,8 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
 
+    private Mario mario;
+
     public PlayScreen(DemoGame game) {
         this.game = game;
         gamecam = new OrthographicCamera();
@@ -58,6 +62,7 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, 0), true);
         b2dr = new Box2DDebugRenderer();
 
+        mario = new Mario(world);
 
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
@@ -105,6 +110,7 @@ public class PlayScreen implements Screen {
             body.createFixture(fixtureDef);
         }
 
+
     }
 
     @Override
@@ -113,13 +119,16 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isTouched()) {
-            gamecam.position.x += 100 * dt;
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && mario.b2body.getLinearVelocity().x <= 2)
+            mario.b2body.applyLinearImpulse(new Vector2(0.1f, 0), mario.b2body.getWorldCenter(), true);
+
     }
 
     public void update(float dt) {
         handleInput(dt);
+
+        world.step(1/60f, 6, 2);
+
         gamecam.update();
         renderer.setView(gamecam);
     }
