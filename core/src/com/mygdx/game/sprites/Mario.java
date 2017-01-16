@@ -33,7 +33,6 @@ public class Mario extends Sprite {
 
         fixtureDef.shape = shape;
         b2body.createFixture(fixtureDef);
-
     }
 
 }

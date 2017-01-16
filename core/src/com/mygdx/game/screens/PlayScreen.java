@@ -50,7 +50,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(DemoGame game) {
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(DemoGame.V_WIDTH, DemoGame.V_HEIGHT, gamecam);
+        gamePort = new FitViewport(DemoGame.V_WIDTH / DemoGame., DemoGame.V_HEIGHT, gamecam);
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
 
         gamecam.position.set(gamePort.getWorldWidth() /2, gamePort.getWorldHeight() / 2, 0);
 
-        world = new World(new Vector2(0, 0), true);
+        world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
 
         mario = new Mario(world);
