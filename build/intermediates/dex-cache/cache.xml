@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.5/293bbe05bfb5ca812c849e4d1f494f56509d5a6e/gdx-backend-android-1.9.5.jar"
-        jumboMode="false"
-        revision="25.0.2"
-        sha1="293bbe05bfb5ca812c849e4d1f494f56509d5a6e">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.9.5_67ea3e7b44ff69807a6826986d4c76abb33807a2.jar" />
-    </item>
-    <item
         jar="/home/josevieira/Documents/learning-libgdx/learning-libgdx/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="25.0.2"
-        sha1="d89a2336fa1c05da7592b2929861b2e722a5273b">
+        sha1="5ce75407b8a0f15b201d66754e6c709820f40f7d">
         <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/debug/core-1.0_d039d6aa2fde16484c5debe921be453ed22fff8b.jar" />
+    </item>
+    <item
+        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.9.5/c8098219abfe00b849cc43d461b1105fea3a2944/gdx-box2d-1.9.5.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c8098219abfe00b849cc43d461b1105fea3a2944">
+        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.9.5_181516f4f0bb18a4e489f6a160e87fc85d28d88c.jar" />
     </item>
     <item
         jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/dc65bb2f51828c58b1b2b3ac585357204d54ee5f/gdx-1.9.5.jar"
@@ -21,6 +21,13 @@
         revision="25.0.2"
         sha1="dc65bb2f51828c58b1b2b3ac585357204d54ee5f">
         <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/debug/gdx-1.9.5_731d9b02c9b26e59f5345247fc2daa6d05dcfacd.jar" />
+    </item>
+    <item
+        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.5/293bbe05bfb5ca812c849e4d1f494f56509d5a6e/gdx-backend-android-1.9.5.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="293bbe05bfb5ca812c849e4d1f494f56509d5a6e">
+        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.9.5_67ea3e7b44ff69807a6826986d4c76abb33807a2.jar" />
     </item>
 
 </items>

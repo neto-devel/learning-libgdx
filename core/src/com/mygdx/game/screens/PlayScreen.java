@@ -50,16 +50,16 @@ public class PlayScreen implements Screen {
     public PlayScreen(DemoGame game) {
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(DemoGame.V_WIDTH / DemoGame., DemoGame.V_HEIGHT, gamecam);
+        gamePort = new FitViewport(DemoGame.V_WIDTH / DemoGame.PPM, DemoGame.V_HEIGHT / DemoGame.PPM, gamecam);
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level1.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        renderer = new OrthogonalTiledMapRenderer(map, 1/ DemoGame.PPM);
 
         gamecam.position.set(gamePort.getWorldWidth() /2, gamePort.getWorldHeight() / 2, 0);
 
-        world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -10 / DemoGame.PPM), true);
         b2dr = new Box2DDebugRenderer();
 
         mario = new Mario(world);
@@ -73,9 +73,9 @@ public class PlayScreen implements Screen {
         for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2 , rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / DemoGame.PPM , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM ) ;
             body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2) / DemoGame.PPM, (rect.getHeight() / 2) / DemoGame.PPM);
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
@@ -83,9 +83,9 @@ public class PlayScreen implements Screen {
         for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2 , rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / DemoGame.PPM , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM ) ;
             body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2) / DemoGame.PPM, (rect.getHeight() / 2) / DemoGame.PPM);
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
@@ -93,9 +93,9 @@ public class PlayScreen implements Screen {
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2 , rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / DemoGame.PPM , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM ) ;
             body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2) / DemoGame.PPM, (rect.getHeight() / 2) / DemoGame.PPM);
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
@@ -103,9 +103,9 @@ public class PlayScreen implements Screen {
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2 , rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / DemoGame.PPM , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM ) ;
             body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2) / DemoGame.PPM, (rect.getHeight() / 2) / DemoGame.PPM);
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
@@ -119,8 +119,16 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && mario.b2body.getLinearVelocity().x <= 2)
+
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+            mario.b2body.applyLinearImpulse(new Vector2(0, 4f), mario.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && mario.b2body.getLinearVelocity().x <= 2) {
             mario.b2body.applyLinearImpulse(new Vector2(0.1f, 0), mario.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && mario.b2body.getLinearVelocity().x >= -2) {
+            mario.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), mario.b2body.getWorldCenter(), true);
+        }
 
     }
 
@@ -128,6 +136,8 @@ public class PlayScreen implements Screen {
         handleInput(dt);
 
         world.step(1/60f, 6, 2);
+
+        gamecam.position.x = mario.b2body.getPosition().x;
 
         gamecam.update();
         renderer.setView(gamecam);
