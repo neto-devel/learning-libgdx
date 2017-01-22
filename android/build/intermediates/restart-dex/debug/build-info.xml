@@ -4,27 +4,27 @@
     api-level="22"
     density="xxhdpi"
     format="7"
-    timestamp="958201615328"
+    timestamp="6401632937275"
     token="-3835449535663223195" >
 
     <task
         name="javac"
-        duration="2438" />
+        duration="1071" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="265" />
+        duration="472" />
     <task
         name="verifier"
-        duration="5" />
+        duration="6" />
 
     <artifact
         location="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/outputs/apk/android-debug.apk"
         type="MAIN" />
 
-    <build timestamp="958201615328" >
+    <build timestamp="6401632937275" >
         <artifact
             location="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/outputs/apk/android-debug.apk"
             type="MAIN" />

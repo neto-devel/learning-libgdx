@@ -5,64 +5,8 @@
         jar="/home/josevieira/Documents/learning-libgdx/learning-libgdx/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="25.0.2"
-        sha1="d330e7cf61d20c8571c96ec724f25e7ce48ab1bb">
+        sha1="c6d3db373cceec3e901aac2775e2b4bbcdae886d">
         <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/release/core-1.0_d039d6aa2fde16484c5debe921be453ed22fff8b.jar" />
-    </item>
-    <item
-        jar="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="25.0.2"
-        sha1="75897b1a0018d7c429a423ee326caa533ab2275c">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ed51453a8b3cb0bf9fbcdfef8d46a32d521c69eb/classes.dex" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.9.5/c8098219abfe00b849cc43d461b1105fea3a2944/gdx-box2d-1.9.5.jar"
-        jumboMode="true"
-        revision="25.0.2"
-        sha1="c8098219abfe00b849cc43d461b1105fea3a2944">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-box2d-1.9.5_181516f4f0bb18a4e489f6a160e87fc85d28d88c/classes.dex" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.9.5/c8098219abfe00b849cc43d461b1105fea3a2944/gdx-box2d-1.9.5.jar"
-        jumboMode="false"
-        revision="25.0.2"
-        sha1="c8098219abfe00b849cc43d461b1105fea3a2944">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/release/gdx-box2d-1.9.5_181516f4f0bb18a4e489f6a160e87fc85d28d88c.jar" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/dc65bb2f51828c58b1b2b3ac585357204d54ee5f/gdx-1.9.5.jar"
-        jumboMode="true"
-        revision="25.0.2"
-        sha1="dc65bb2f51828c58b1b2b3ac585357204d54ee5f">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-1.9.5_731d9b02c9b26e59f5345247fc2daa6d05dcfacd/classes.dex" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/dc65bb2f51828c58b1b2b3ac585357204d54ee5f/gdx-1.9.5.jar"
-        jumboMode="false"
-        revision="25.0.2"
-        sha1="dc65bb2f51828c58b1b2b3ac585357204d54ee5f">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/release/gdx-1.9.5_731d9b02c9b26e59f5345247fc2daa6d05dcfacd.jar" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.5/293bbe05bfb5ca812c849e4d1f494f56509d5a6e/gdx-backend-android-1.9.5.jar"
-        jumboMode="true"
-        revision="25.0.2"
-        sha1="293bbe05bfb5ca812c849e4d1f494f56509d5a6e">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/transforms/dex/debug/folders/1000/10/gdx-backend-android-1.9.5_67ea3e7b44ff69807a6826986d4c76abb33807a2/classes.dex" />
-    </item>
-    <item
-        jar="/home/josevieira/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.9.5/293bbe05bfb5ca812c849e4d1f494f56509d5a6e/gdx-backend-android-1.9.5.jar"
-        jumboMode="false"
-        revision="25.0.2"
-        sha1="293bbe05bfb5ca812c849e4d1f494f56509d5a6e">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/pre-dexed/release/gdx-backend-android-1.9.5_67ea3e7b44ff69807a6826986d4c76abb33807a2.jar" />
-    </item>
-    <item
-        jar="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="25.0.2"
-        sha1="c5984bbaf7d44eb38a4cf8ca583aeb11e4de2fb5">
-        <dex dex="/home/josevieira/Documents/learning-libgdx/learning-libgdx/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_2d0c82851de6ec6d140fd115c132598f86486453/classes.dex" />
     </item>
 
 </items>

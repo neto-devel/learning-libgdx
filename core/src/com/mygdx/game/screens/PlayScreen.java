@@ -21,6 +21,10 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -71,6 +75,13 @@ public class PlayScreen implements Screen {
         new B2WorldCreator(world, map);
 
         mario = new Mario(world, this);
+
+        hud.buttonUp.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                mario.b2body.applyLinearImpulse(new Vector2(0, 4f), mario.b2body.getWorldCenter(), true);
+            }
+        });
     }
 
     public TextureAtlas getAtlas(){
@@ -83,20 +94,37 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
+        hud.buttonRight.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (mario.b2body.getLinearVelocity().x <= 2){
+                    mario.b2body.applyLinearImpulse(new Vector2(0.01f, 0), mario.b2body.getWorldCenter(), true);
+                }
+            }
+        });
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+        hud.buttonLeft.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (mario.b2body.getLinearVelocity().x >= -2){
+                    mario.b2body.applyLinearImpulse(new Vector2(-0.01f, 0), mario.b2body.getWorldCenter(), true);
+                }
+            }
+        });
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             mario.b2body.applyLinearImpulse(new Vector2(0, 4f), mario.b2body.getWorldCenter(), true);
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && mario.b2body.getLinearVelocity().x <= 2)
             mario.b2body.applyLinearImpulse(new Vector2(0.1f, 0), mario.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && mario.b2body.getLinearVelocity().x >= -2)
             mario.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), mario.b2body.getWorldCenter(), true);
-
     }
 
     public void update(float dt) {
         handleInput(dt);
         world.step(1/60f, 6, 2);
-        mario.update();
+        mario.update(dt);
         gamecam.position.x = mario.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
