@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -26,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.DemoGame;
 import com.mygdx.game.scenes.Hud;
 import com.mygdx.game.sprites.Mario;
+import com.mygdx.game.tool.B2WorldCreator;
 
 /**
 
@@ -46,8 +48,12 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
 
     private Mario mario;
+    private TextureAtlas atlas;
 
     public PlayScreen(DemoGame game) {
+
+        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(DemoGame.V_WIDTH / DemoGame.PPM , DemoGame.V_HEIGHT / DemoGame.PPM , gamecam);
@@ -62,53 +68,13 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10 ), true);
         b2dr = new Box2DDebugRenderer();
 
-        mario = new Mario(world);
+        new B2WorldCreator(world, map);
 
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
+        mario = new Mario(world, this);
+    }
 
-        FixtureDef fixtureDef = new FixtureDef();
-        Body body;
-
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set( (rect.getX() + rect.getWidth() / 2) / DemoGame.PPM  , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM) ;
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2 / DemoGame.PPM , rect.getHeight() / 2 / DemoGame.PPM );
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set( (rect.getX() + rect.getWidth() / 2) / DemoGame.PPM  , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM) ;
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2 / DemoGame.PPM , rect.getHeight() / 2 / DemoGame.PPM );
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-
-        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set( (rect.getX() + rect.getWidth() / 2) / DemoGame.PPM  , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM) ;
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2 / DemoGame.PPM , rect.getHeight() / 2 / DemoGame.PPM );
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-
-        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set( (rect.getX() + rect.getWidth() / 2) / DemoGame.PPM  , (rect.getY() + rect.getHeight() / 2) / DemoGame.PPM) ;
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2 / DemoGame.PPM , rect.getHeight() / 2 / DemoGame.PPM );
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
+    public TextureAtlas getAtlas(){
+        return atlas;
     }
 
     @Override
@@ -129,11 +95,9 @@ public class PlayScreen implements Screen {
 
     public void update(float dt) {
         handleInput(dt);
-
         world.step(1/60f, 6, 2);
-
+        mario.update();
         gamecam.position.x = mario.b2body.getPosition().x;
-
         gamecam.update();
         renderer.setView(gamecam);
     }
@@ -147,8 +111,13 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.render();
-
         b2dr.render(world, gamecam.combined);
+
+        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.begin();
+        mario.draw(game.batch);
+        game.batch.end();
+
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
@@ -176,7 +145,11 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
+        hud.dispose();
     }
 
 }
